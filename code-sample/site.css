@@ -1,0 +1,17 @@
+/* this is my style.css */
+body {
+    background-color: #f0f8ff;   /* light blue background */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+}
+
+h1 {
+    color: #2e8b57;             /* sea green text */
+    font-size: 48px;
+}
+
+p {
+    color: #555;                /* dark gray text */
+    font-size: 20px;
+}
