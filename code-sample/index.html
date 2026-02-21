@@ -3,8 +3,44 @@
 <head>
     <title>Hello World Page</title>
 </head>
-<body>
-    <h1>India Leadinng the worldi</h1>
-    <p>This is my first HTML page.</p>
-</body>
-</html>
+<body>check the code                                                                                                                                   
+    
+    
+    pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/reachouttoViji-Viji/Project.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t php-webapp:latest -f /home/labuser/demo/project/Dockerfile /home/labuser/demo/project'
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                sh '''
+                docker ps -q --filter "name=php-webapp" | xargs -r docker stop
+                docker ps -aq --filter "name=php-webapp" | xargs -r docker rm
+                docker run -d --name php-webapp -p 8082:80 php-webapp:latest
+                '''
+            }
+        }
+    }
+
+    post {
+        failure {
+            sh '''
+            echo "Build failed! Cleaning up containers..."
+            docker ps -q --filter "name=php-webapp" | xargs -r docker stop
+            docker ps -aq --filter "name=php-webapp" | xargs -r docker rm
+            '''
+        }
+    }
+}
+    
