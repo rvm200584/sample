@@ -1,0 +1,10 @@
+guide me like fresher, for each steps where to configure how to configure in detail step for this lab very simple method.                                                                                                                                                                    Region 1 (us-east-1) PRIMARY          Region 2 (us-west-2) SECONDARY
+├── VPC + Networking                   ├── VPC + Networking
+├── ECS Fargate Cluster                ├── ECS Fargate Cluster
+├── ECR Repository                     ├── ECR Repository (replicated)
+├── CodeCommit (Primary)               ├── CodeCommit (Replicated)
+├── CodePipeline                       ├── CodePipeline
+├── ALB                                ├── ALB
+└── CloudWatch + SNS                   └── CloudWatch + SNS
+          │                                      │
+          └──────── Route 53 (Global) ───────────┘
